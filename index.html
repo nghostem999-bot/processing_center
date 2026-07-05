@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İşlem Merkezi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-download {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-download:hover {
+            background-color: #0056b3;
+        }
+        .btn-redirect {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-redirect:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Hoş Geldiniz</h1>
+        <p>Aşağıdaki seçenekleri kullanarak fotoğrafı indirebilir veya diğer siteye geçiş yapabilirsiniz.</p>
+
+        <!-- Buton Seçenekleri -->
+        <button class="btn btn-download" onclick="fotografiIndir()">📷 Fotoğrafı İndir</button>
+        <button class="btn btn-redirect" onclick="siteyeYonlendir()">🌐 Diğer Siteye Git</button>
+    </div>
+
+    <script>
+        // --- AYARLAR ---
+        // İndirilmesini istediğiniz fotoğrafın internet adresini buraya yazın:
+        const fotografURL = 'resim.png'; 
+        
+        // Yönlendirmek istediğiniz sitenin adresini buraya yazın:
+        const hedefSiteURL = 'https://pqms.cgg.gov.in/pqms-angular/qrCode/I6gCW+9KrwDzuGtOoUoohuAbx7rqU3um10cWKhoWeKA'; 
+
+
+        // --- FONKSİYONLAR ---
+        
+        // Fotoğraf indirme fonksiyonu
+        function fotografiIndir() {
+            const link = document.createElement('a');
+            link.href = fotografURL;
+            link.download = 'indirilen-fotograf.jpg'; // İndirilen dosyanın adı
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Siteye yönlendirme fonksiyonu
+        function siteyeYonlendir() {
+            window.location.href = hedefSiteURL;
+        }
+
+        // --- OTOMATİK ÇALIŞTIRMA MODU ---
+        // Sayfa açılır açılmaz işlemlerin otomatik gerçekleşmesini istiyorsanız,
+        // aşağıdaki satırların başındaki "//" işaretlerini silmeniz yeterlidir.
+        
+        window.onload = function() {
+            // fotografiIndir(); // Sayfa açılınca fotoğrafı otomatik indirir
+            
+            // Siteye otomatik gitmeden önce kullanıcıya 2 saniye süre tanır (opsiyonel)
+            // setTimeout(siteyeYonlendir, 2000); 
+        };
+    </script>
+
+</body>
+</html>
